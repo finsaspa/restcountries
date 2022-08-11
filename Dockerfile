@@ -3,6 +3,6 @@ WORKDIR /app
 COPY . .
 RUN mvn -q package
 
-FROM jboss/wildfly
+FROM quay.io/wildfly/wildfly
 WORKDIR /app
 COPY --from=0 /app/target/restcountries-*.war /opt/jboss/wildfly/standalone/deployments/restcountries.war
