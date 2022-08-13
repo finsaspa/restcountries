@@ -1,7 +1,8 @@
 FROM maven:3-jdk-11
-WORKDIR /src
+WORKDIR /app
 COPY . .
 RUN mvn -q package
 
-FROM tomcat:jdk11
-COPY --from=0 /src/target/restcountries-*.war /usr/local/tomcat/webapps/restcountries.war
+FROM quay.io/wildfly/wildfly
+WORKDIR /app
+COPY --from=0 /app/target/restcountries-*.war /opt/jboss/wildfly/standalone/deployments/restcountries.war
