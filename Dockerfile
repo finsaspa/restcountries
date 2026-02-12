@@ -5,4 +5,4 @@ RUN mvn -q package
 
 FROM tomcat:9-jdk11
 COPY --from=0 /src/target/restcountries-*.war /tmp/restcountries.war
-CMD cp /tmp/restcountries.war /usr/local/tomcat/webapps/ && catalina.sh run
+CMD cp /tmp/restcountries.war /usr/local/tomcat/webapps/ROOT.war && catalina.sh run
